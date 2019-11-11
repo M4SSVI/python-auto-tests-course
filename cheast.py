@@ -4,6 +4,12 @@ def calc(x):
   return str(math.log(abs(12*math.sin(int(x))))) 
 
 from selenium import webdriver
+chrome_options = webdriver.ChromeOptions()
+chrome_options.add_argument('--no-sandbox')
+chrome_options.add_argument('--window-size=1420,1080')
+chrome_options.add_argument('--headless')
+chrome_options.add_argument('--disable-gpu')
+driver = webdriver.Chrome(chrome_options=chrome_options)
 link = "http://suninjuly.github.io/get_attribute.html"
 browser = webdriver.Chrome('/Users/user/bin/chromedriver')
 browser.get(link)
