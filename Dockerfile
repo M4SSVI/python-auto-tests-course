@@ -19,3 +19,5 @@ RUN pip install --upgrade pip
 
 # install selenium
 RUN pip install selenium
+
+ENTRYPOINT ["/python-auto-tests-course/start.sh"]

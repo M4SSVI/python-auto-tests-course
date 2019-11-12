@@ -1,5 +1,5 @@
 import os 
-
+import allure
 from selenium import webdriver
 import time
 

@@ -1,3 +1,4 @@
+import allure
 import math
 
 def calc(x):

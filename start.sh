@@ -19,8 +19,8 @@ docker build ${PROJECT_DIR} -t ${PROJECT_IMAGE}
 # Run the project image as declared above
 docker run --rm \
     -v $(pwd)/$PROJECT_DIR/$ALLURE_RESULTS_DIR:/code/$ALLURE_RESULTS_DIR \
-    -v $(pwd)/blazedemo_app/:/code/ \
+    -v $(pwd)/python-auto-tests-course/:/tests/ \
     -w=/code \
-    -e PYTHONPATH=/code/ \
+    -e PYTHONPATH=/python-auto-tests-course/ \
     ${PROJECT_IMAGE} \
     "$PYTEST_ARGUMENTS"
