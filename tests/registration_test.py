@@ -1,31 +1,32 @@
 import allure
-from selenium import webdriver
 import time
-
+from selenium import webdriver
+chrome_options = webdriver.ChromeOptions()
+chrome_options.add_argument('--no-sandbox')
+chrome_options.add_argument('--window-size=1420,1080')
+chrome_options.add_argument('--headless')
+chrome_options.add_argument('--disable-gpu')
+driver = webdriver.Chrome(chrome_options=chrome_options)
 link = "http://suninjuly.github.io/registration2.html"
-browser = webdriver.Chrome()
-browser.get(link)
+driver.get(link)
 
 # Ваш код, который заполняет обязательные поля
 
 # Заполняем поле имя
-input1 = browser.find_element_by_css_selector("[placeholder='Введите имя']")
+input1 = driver.find_element_by_css_selector("[placeholder='Input youjrtgkjrtiojlktrjbjkrtr name']")
 input1.send_keys("Ivan")
 # Заполняем поле фамилия
-input2 = browser.find_element_by_css_selector("[placeholder='Введите фамилию']")
+input2 = driver.find_element_by_css_selector("[placeholder='Input your email']")
 input2.send_keys("Petrov")
 # Заполняем поле email
-input3 = browser.find_element_by_css_selector("[placeholder='Введите Email']")
+input3 = driver.find_element_by_css_selector("[placeholder='Input your phone']")
 input3.send_keys("test@mail.com")
-# Заполняем поле телефон
-#input4 = browser.find_element_by_css_selector("[placeholder='Введите телефон:']") #необязательное  поле
-#input4.send_keys("89111234567")
 # Заполняем поле адрес
-#input5 = browser.find_element_by_css_selector("[placeholder='Введите адрес:']") #необязательное  поле
-#input5.send_keys("Russia Moscow Lesnaya street 2")
+input4 = driver.find_element_by_css_selector("[placeholder='Input your address']")
+input4.send_keys("test@mail.com")
 
 # Отправляем заполненную форму
-button = browser.find_element_by_css_selector("button.btn")
+button = driver.find_element_by_css_selector("button.btn")
 button.click()
 
 # Проверяем, что смогли зарегистрироваться
@@ -33,9 +34,9 @@ button.click()
 time.sleep(1)
 
 # находим элемент, содержащий текст
-welcome_text_elt = browser.find_element_by_tag_name("h1")
+welcome_text_elt = driver.find_element_by_tag_name("h1")
 # записываем в переменную welcome_text текст из элемента welcome_text_elt
 welcome_text = welcome_text_elt.text
 
 # с помощью assert проверяем, что ожидаемый текст совпадает с текстом на странице сайта
-assert "Поздравляем! Вы успешно зарегистировались!" == welcome_text
+assert "Congratulations! You have successfully registered!" == welcome_text

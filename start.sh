@@ -3,6 +3,9 @@
 # Declaring pytest arguments
 export PYTEST_ARGUMENTS=${@:-tests/cheast.py}
 
+# Set tag names to folders
+export PROJECT_IMAGE=python-auto-tests-course
+
 export ALLURE_RESULTS_DIR=allure-results
 export PROJECT_DIR=python-auto-tests-course
 
@@ -10,17 +13,20 @@ export PROJECT_DIR=python-auto-tests-course
 docker build selenium-base-image -t ${AUTOMATION_IMAGE}
 docker build ${PROJECT_DIR} -t ${PROJECT_IMAGE}
 
+# pull allure report image from docker hub
+ALLURE_IMAGE=beeete2/docker-allure2
 
-# Run Selenium py.test with script arguments
-# Map allure output xml to image folder
-# Map root folder to image folder
-# Set the working directory as the root folder in the image
-# Set the PYTHONPATH to the root folder in the image
-# Run the project image as declared above
+# create relevant folder structure for allure report
+ALLURE_CONFIG_DIR=allure-config
+ALLURE_REPORT_DIR=allure-report
+ALLURE_RESULTS_DIR=allure-results
+PROJECT_DIR=python-auto-tests-course
+
+# Delete any previous allure reports
+rm -rf $PROJECT_DIR/$ALLURE_REPORT_DIR
+
+# run allure image to generate allure report based on latest test results
 docker run --rm \
-    -v $(pwd)/$PROJECT_DIR/$ALLURE_RESULTS_DIR:/code/$ALLURE_RESULTS_DIR \
-    -v $(pwd)/python-auto-tests-course/:/tests/ \
-    -w=/code \
-    -e PYTHONPATH=/python-auto-tests-course/ \
-    ${PROJECT_IMAGE} \
-    "$PYTEST_ARGUMENTS"
+    -v $(pwd)/$PROJECT_DIR/$ALLURE_REPORT_DIR:/$ALLURE_REPORT_DIR \
+    -v $(pwd)/$PROJECT_DIR/$ALLURE_RESULTS_DIR:/$ALLURE_RESULTS_DIR \
+    -v $(pwd)/$PROJECT_DIR/$ALLURE_CONFIG_DIR:/$ALLURE_CONFIG_DIR \

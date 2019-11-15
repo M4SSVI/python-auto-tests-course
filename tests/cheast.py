@@ -12,22 +12,22 @@ chrome_options.add_argument('--headless')
 chrome_options.add_argument('--disable-gpu')
 driver = webdriver.Chrome(chrome_options=chrome_options)
 link = "http://suninjuly.github.io/get_attribute.html"
-browser = webdriver.Chrome('/Users/user/bin/chromedriver')
-browser.get(link)
+driver = webdriver.Chrome()
+driver.get(link)
 
-x_element = browser.find_element_by_css_selector("[id=treasure]")
+x_element = driver.find_element_by_css_selector("[id=treasure]")
 treasure = x_element.get_attribute("valuex")
 x = calc(treasure)
 
-input1 = browser.find_element_by_css_selector("[id=answer]")
+input1 = driver.find_element_by_css_selector("[id=answer]")
 input1.send_keys(x)
 # Указать чекбокс
-option2 = browser.find_element_by_css_selector("[id=robotCheckbox]")
+option2 = driver.find_element_by_css_selector("[id=robotCheckbox]")
 option2.click()
 # Выбрать радиотбаттон
-option3 = browser.find_element_by_css_selector("[id=robotsRule]")
+option3 = driver.find_element_by_css_selector("[id=robotsRule]")
 option3.click()
 
 # Отправляем заполненную форму
-button = browser.find_element_by_css_selector("button.btn")
+button = driver.find_element_by_css_selector("button.btn")
 button.click()

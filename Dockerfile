@@ -1,5 +1,9 @@
 FROM python:3.7
 
+COPY . /python-auto-tests-course 
+WORKDIR . /python-auto-tests-course
+
+
 # install google chrome
 RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
 RUN sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list'
@@ -17,7 +21,14 @@ ENV DISPLAY=:99
 # upgrade pip
 RUN pip install --upgrade pip
 
+# install pytest
+RUN pip install -U pytest
+
 # install selenium
 RUN pip install selenium
+
+#install allure
+RUN pip install allure-pytest
+
 
 ENTRYPOINT ["/python-auto-tests-course/start.sh"]
