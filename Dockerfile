@@ -1,7 +1,7 @@
 FROM python:3.7
 
 COPY . /python-auto-tests-course 
-WORKDIR . /python-auto-tests-course
+WORKDIR /python-auto-tests-course
 
 
 # install google chrome
