@@ -24,6 +24,9 @@ pytest ./python-auto-tests-course/tests/test_1.py -v --alluredir=allure-results
 
 docker image build -t python-auto-tests-course .
 
-docker run python-auto-tests-course
+
+# Запуск контейнера 
+
+docker run -v $PWD/allure-results:/python-auto-tests-course/allure-results python-auto-tests-course
 
 
