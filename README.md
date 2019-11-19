@@ -17,7 +17,7 @@ pip install -U selenium
 
 pip install allure-pytest
 
-pytest ./python-auto-test-course/tests/test_1.py -v --alluredir=allure-results
+pytest ./python-auto-tests-course/tests/test_1.py -v --alluredir=allure-results
 
 
 # Для сборки Docker образа
