@@ -27,6 +27,13 @@ docker image build -t python-auto-tests-course .
 
 # Запуск контейнера 
 
-docker run -v $PWD/allure-results:/python-auto-tests-course/allure-results python-auto-tests-course
+generate json 
+docker run -v $PWD/allure-results:/python-auto-tests-course/allure-results python-auto-tests-course 
+
+generate report
+docker run \
+-v $PWD/allure-report:/allure-report \
+-v $PWD/allure-results:/python-auto-tests-course/allure-results \
+test  allure report generate -o /allure-report
 
 

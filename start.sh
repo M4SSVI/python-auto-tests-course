@@ -3,5 +3,6 @@
 pytest ./tests/test_1.py --alluredir=allure-results 
 ls 
 ls -la allure-results
+ls -la allure-report 
 
 
