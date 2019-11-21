@@ -31,9 +31,7 @@ generate json
 docker run -v $PWD/allure-results:/python-auto-tests-course/allure-results python-auto-tests-course 
 
 generate report
-docker run \
--v $PWD/allure-report:/allure-report \
--v $PWD/allure-results:/python-auto-tests-course/allure-results \
-test  allure report generate -o /allure-report
+allure serve ./allure-results && allure report open -o /allure-results -p 5000 & \
+    /usr/bin/open -a "/Applications/Google Chrome.app" 'http://127.0.0.1:5000'
 
 

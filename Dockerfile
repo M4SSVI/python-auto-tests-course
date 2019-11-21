@@ -3,6 +3,8 @@ FROM python:3.7
 COPY . /python-auto-tests-course 
 WORKDIR /python-auto-tests-course
 
+ARG ALLURE_RELEASE=NONE
+ARG ALLURE_REPO=https://dl.bintray.com/qameta/maven/io/qameta/allure/allure-commandline
 
 # install google chrome
 RUN wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
@@ -30,13 +32,4 @@ RUN pip install selenium
 #install allure
 RUN pip install allure-pytest
 
-#install allure options 
-RUN wget https://dl.bintray.com/qameta/generic/io/qameta/allure/allure/2.0.0/allure-2.0.0.tgz
-RUN tar -xf allure-2.0.0.tgz 
-RUN rm allure-2.0.0.tgz
-ENV PATH="/allure/bin:${PATH}"
-ENV ALLURE_CONFIG="/allure-config/allure.properties"
-
 ENTRYPOINT ["/python-auto-tests-course/start.sh"]
-
-CMD allure generate /allure-2.0.0
